@@ -1,19 +1,22 @@
+const header=document.createElement("div")
+header.setAttribute("class","head")
+header.innerHTML="<h1>where in the world?</h1>"
+document.body.append(header)
+const search=document.createElement("div")
+search.setAttribute("class","search")
+    document.body.append(search)
+    const searchbar=document.createElement("input")
+    searchbar.setAttribute("class","searchbar")
+    searchbar.setAttribute("placeholder","search")
+    search.appendChild(searchbar)
 
 
-var xhr = new XMLHttpRequest();
-xhr.open("GET", "https://restcountries.eu/rest/v2/all");
-xhr.onload = function () 
- {
-     var t = JSON.parse(this.response);
-     for(i=0;i<t.length;i++){
-     country_name=(t[i].name)
-     country_region=(t[i].region)
-     country_population=(t[i].population)
-     country_flag=(t[i].flag)
-     country_capital=t[i].capital
+function country(){
+
     const flex=document.createElement("div");
     flex.setAttribute("class","flex")
     document.body.append(flex)
+    
     // container for flag and info
     const division=document.createElement("div")
     division.setAttribute("class","container")
@@ -45,7 +48,21 @@ xhr.onload = function ()
      capital.innerHTML="<b>Capital:</b>"+country_capital;
      info.appendChild(capital)
      
-    
+}
+
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "https://restcountries.eu/rest/v2/all");
+xhr.onload = function () 
+ {
+     var t = JSON.parse(this.response);
+     for(i=0;i<t.length;i++){
+     country_name=(t[i].name)
+     country_region=(t[i].region)
+     country_population=(t[i].population)
+     country_flag=(t[i].flag)
+     country_capital=t[i].capital
+   
+     country()
      }
 }
 
@@ -56,6 +73,10 @@ xhr.onload = function ()
      xhr.send();
      
      
+     
+    
+     
+    
      
     
      
